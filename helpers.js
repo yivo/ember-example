@@ -31,23 +31,23 @@ src.css = { root: src.root + 'stylesheets/' };
 src.images = { root: src.root + 'images/' };
 src.html = { root: src.root };
 src.html.templates = { root: src.html.root + 'templates/' };
-src.html.templates = {
-    cache: {
-        root: src.html.templates.root,
-        name: 'all.html'
-    },
-    list: ['**/*'].rootOf(src.html.templates.root)
+src.html.templates.cache = {
+    root: src.html.templates.root,
+    name: 'all.html'
 };
+src.html.templates.list = ['**/*'].rootOf(src.html.templates.root);
 src.html.templates.cache.file = src.html.templates.cache.name.rootOf(src.html.templates.cache.root);
 
 src.js.list = [
     'app.js',
-    'router.js',
-    'routes/**/*.js',
+    'lib/**/*',
+    'app/router.js',
+    'app/routes/**/*.js',
     '**/*.js'
 ].rootOf(src.js.root);
 
 src.css.list = [
+    '**/*.css',
     'styles.css'
 ].rootOf(src.css.root);
 
@@ -56,13 +56,15 @@ src.images.list = ['**/*'].rootOf(src.images.root);
 src.html.list = ['index.html'].rootOf(src.html.root);
 
 vendor.root = 'bower_components/';
+
 vendor.js = [
     'jquery/dist/jquery.js',
     'handlebars/handlebars.js',
     'ember/ember.js',
     'ember-data/ember-data.js'
 ].rootOf(vendor.root);
-vendor.css = ['no.css'].rootOf(vendor.root);
+
+vendor.css = ['pure/pure.css'].rootOf(vendor.root);
 
 app.root = 'public/';
 app.js = { root: app.root + 'javascripts/' };

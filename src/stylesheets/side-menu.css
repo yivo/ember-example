@@ -236,18 +236,3 @@ Hides the menu at `48em`, but modify this based on your app's needs.
         left: 150px;
     }
 }
-@-webkit-keyframes appear {
-    0% {
-        margin-top: 80px;
-        opacity: 0;
-    }
-    100% {
-        margin-top: 0;
-        opacity: 1;
-    }
-}
-.appear {
-    -webkit-animation: appear 200ms ease-in-out;
-    -webkit-animation-fill-mode: backwards;
-    display: block!important;
-}
