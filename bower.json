@@ -1,0 +1,21 @@
+{
+  "name": "ember-example",
+  "version": "0.0.0",
+  "authors": [
+    "Yaroslav Konoplov <the.yivo@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "ember": "~1.6.1",
+    "ember-data": "~0.0.14",
+    "handlebars": "~1.3.0"
+  }
+}

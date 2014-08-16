@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ember-example</title>
+    <link rel="stylesheet" href="stylesheets/vendor.css">
+    <link rel="stylesheet" href="stylesheets/application.css">
+    <script type="text/javascript" src="javascripts/vendor.js"></script>
+    <script type="text/javascript" src="javascripts/application.js"></script>
+    <script type="text/x-handlebars">
+        <h2>Welcome to Ember.js</h2>
+    
+        {{outlet}}
+    </script>
+    
+    <script type="text/x-handlebars" id="index">
+        <ul>
+            {{#each item in model}}
+            <li>{{item}}</li>
+            {{/each}}
+        </ul>
+    </script>
+</head>
+<body>
+
+</body>
+</html>
