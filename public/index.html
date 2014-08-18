@@ -14,28 +14,24 @@
         </div>
         {{outlet modal}}
     </script>
+    <script type="text/x-handlebars" data-template-name="loading">
+        <div class="contact-list csspinner no-overlay"></div>
+    </script>
     <script type="text/x-handlebars" data-template-name="_contact-list-controls">
-        <h1>{{q}}</h1>
         <div class="contact-list-controls">
             {{input type='text' valueBinding='controller.q' placeholder='Search...'}}
             {{#link-to 'contacts.new' (query-params q='')}}New{{/link-to}}
         </div>
     </script>
     <script type="text/x-handlebars" data-template-name="contacts">
-    
         <div class="appear">
-    
             {{partial 'contact-list-controls'}}
             <ul class="contact-list">
                 {{#each}}
                     {{render 'contact' this}}
                 {{/each}}
             </ul>
-    
-            {{outlet}}
-    
         </div>
-    
     </script>
     <script type="text/x-handlebars" data-template-name="contact-form">
         <form>
@@ -52,7 +48,7 @@
     <script type="text/x-handlebars" data-template-name="contact">
         <li class="contact">
             <a href="javascript:void(0);">
-                <img class="photo" src="#" width="100" height="100"/>
+                <img {{bind-attr src=photo}} class="photo" width="100" height="100"/>
                 <span class="name">{{name}}</span>
             </a>
         </li>
@@ -60,7 +56,9 @@
     <script type="text/x-handlebars" data-template-name="menu">
         <div id="menu">
             <div class="pure-menu pure-menu-open">
-                <a class="pure-menu-heading" href="#">Company</a>
+                {{#link-to 'index' class="pure-menu-heading"}}
+                    Home
+                {{/link-to}}
                 <ul>
                     {{#each groups}}
                         {{#link-to 'contacts' (query-params group=this.name q='')}}

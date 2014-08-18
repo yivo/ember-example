@@ -1,16 +1,10 @@
 <script type="text/x-handlebars" data-template-name="contacts">
-
     <div class="appear">
-
         {{partial 'contact-list-controls'}}
         <ul class="contact-list">
             {{#each}}
                 {{render 'contact' this}}
             {{/each}}
         </ul>
-
-        {{outlet}}
-
     </div>
-
 </script>

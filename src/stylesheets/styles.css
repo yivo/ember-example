@@ -5,11 +5,9 @@
 }
 @-webkit-keyframes appear {
     0% {
-        margin-top: 80px;
         opacity: 0;
     }
     100% {
-        margin-top: 0;
         opacity: 1;
     }
 }
@@ -35,23 +33,16 @@
     cursor: move;
     overflow: hidden;
     -webkit-backface-visibility: hidden;
-
 }
-.contact .photo:hover {
-    box-shadow: 0 0px 15px -1px;
+.contact .photo {
+    box-shadow: 0 0px 5px -1px;
     cursor: move;
 }
-.contact .name:hover .photo {
-    box-shadow: 0 0px 15px -1px;
+a {
+    color: #2c2c2c;
 }
-.pure-menu li.active {
+.pure-menu a.active {
     background: #444444;
-}
-.pure-menu a:hover {
-    background: none!important;
-}
-.pure-menu li:hover {
-    background: #373c5a;
 }
 .contact-list {
     position: relative;
@@ -91,4 +82,7 @@
 .contact-list-controls input[type="text"]:focus {
     /*width: 200px;*/
     outline: none;
+}
+.csspinner:before {
+    background-color: white!important;
 }

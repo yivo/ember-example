@@ -1,7 +1,9 @@
 <script type="text/x-handlebars" data-template-name="menu">
     <div id="menu">
         <div class="pure-menu pure-menu-open">
-            <a class="pure-menu-heading" href="#">Company</a>
+            {{#link-to 'index' class="pure-menu-heading"}}
+                Home
+            {{/link-to}}
             <ul>
                 {{#each groups}}
                     {{#link-to 'contacts' (query-params group=this.name q='')}}

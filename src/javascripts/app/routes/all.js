@@ -7,7 +7,7 @@ App.ContactsRoute = Ember.Route.extend({
 
     model: function(o) {
         if (!o.group) {
-            return this.store.find('contact');
+            return this.store.findAll('contact');
         }
 
         var defer = Ember.RSVP.defer();
@@ -15,7 +15,7 @@ App.ContactsRoute = Ember.Route.extend({
 
         promise.then(function(groups) {
             var group = groups.get('firstObject');
-            defer.resolve(group ? group.get('contacts') : []);
+            Ember.run.later(defer.resolve.bind(defer, group ? group.get('contacts') : []), 300);
         });
 
         return defer.promise;
@@ -23,9 +23,14 @@ App.ContactsRoute = Ember.Route.extend({
 
 });
 
-App.IndexRoute = App.ContactsRoute.extend({
+App.IndexRoute = Ember.Route.extend({
+
+    model: function() {
+        return this.store.find('contact');
+    },
 
     renderTemplate: function(controller, model) {
+        this.controllerFor('contacts').set('content', model);
         this.render('contacts');
     }
 
@@ -59,4 +64,3 @@ App.ContactsEditRoute = App.ContactsModalForm.extend({
         return this.store.find('contact', o.id);
     }
 });
-

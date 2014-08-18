@@ -4,6 +4,6 @@ App.Group = DS.Model.extend({
 });
 
 App.Group.FIXTURES = [
-    { id: 1, name: 'Family', contacts: [1] },
-    { id: 2, name: 'Friends', contacts: [1,2] }
+    { id: 1, name: 'Humans', contacts: [2] },
+    { id: 2, name: 'Dogs', contacts: [1] }
 ];

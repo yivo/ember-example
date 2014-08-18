@@ -47,7 +47,8 @@ src.js.list = [
 ].rootOf(src.js.root);
 
 src.css.list = [
-    '**/*.css',
+    'side-menu.css',
+    'csspinner.css',
     'styles.css'
 ].rootOf(src.css.root);
 

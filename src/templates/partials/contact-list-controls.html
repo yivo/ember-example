@@ -1,5 +1,4 @@
 <script type="text/x-handlebars" data-template-name="_contact-list-controls">
-    <h1>{{q}}</h1>
     <div class="contact-list-controls">
         {{input type='text' valueBinding='controller.q' placeholder='Search...'}}
         {{#link-to 'contacts.new' (query-params q='')}}New{{/link-to}}

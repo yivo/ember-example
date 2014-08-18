@@ -19,7 +19,7 @@ App.ApplicationStore = DS.Store.extend({
 });
 App.Router.map(function() {
 
-    this.resource('contacts', { path: '/contacts', queryParams: ['group'] }, function() {
+    this.resource('contacts', function() {
         this.route('new');
         this.route('edit', { path: '/edit/:id' });
     });
@@ -34,7 +34,7 @@ App.ContactsRoute = Ember.Route.extend({
 
     model: function(o) {
         if (!o.group) {
-            return this.store.find('contact');
+            return this.store.findAll('contact');
         }
 
         var defer = Ember.RSVP.defer();
@@ -42,7 +42,7 @@ App.ContactsRoute = Ember.Route.extend({
 
         promise.then(function(groups) {
             var group = groups.get('firstObject');
-            defer.resolve(group ? group.get('contacts') : []);
+            Ember.run.later(defer.resolve.bind(defer, group ? group.get('contacts') : []), 300);
         });
 
         return defer.promise;
@@ -50,9 +50,14 @@ App.ContactsRoute = Ember.Route.extend({
 
 });
 
-App.IndexRoute = App.ContactsRoute.extend({
+App.IndexRoute = Ember.Route.extend({
+
+    model: function() {
+        return this.store.find('contact');
+    },
 
     renderTemplate: function(controller, model) {
+        this.controllerFor('contacts').set('content', model);
         this.render('contacts');
     }
 
@@ -86,8 +91,6 @@ App.ContactsEditRoute = App.ContactsModalForm.extend({
         return this.store.find('contact', o.id);
     }
 });
-
-
 App.ContactFormController = Ember.ObjectController.extend({
 
     name: Ember.computed.oneWay('model.name'),
@@ -121,7 +124,7 @@ App.ContactsController = Ember.ArrayController.extend({
     q: ''
 
 });
-App.IndexController = Ember.Controller.extend({
+App.IndexController = Ember.ArrayController.extend({
 
 });
 App.MenuController = Ember.ArrayController.extend({
@@ -134,12 +137,13 @@ App.MenuController = Ember.ArrayController.extend({
 App.Contact = DS.Model.extend({
     name: DS.attr('string'),
     phone: DS.attr('string'),
+    photo: DS.attr('string'),
     groups: DS.hasMany('group')
 });
 
 App.Contact.FIXTURES = [
-    { id: 1, name: 'Bryan', phone: '999-999-999', groups: [1, 2] },
-    { id: 2, name: 'Oliver', phone: '999-999-999', groups: 2 }
+    { id: 1, name: 'Brian', phone: '999-999-999', groups: [1], photo: '/images/brian.jpg' },
+    { id: 2, name: 'Stewie', phone: '999-999-999', groups: [2], photo: '/images/stewie.gif' }
 ];
 App.Group = DS.Model.extend({
     name: DS.attr('string'),
@@ -147,6 +151,6 @@ App.Group = DS.Model.extend({
 });
 
 App.Group.FIXTURES = [
-    { id: 1, name: 'Family', contacts: [1] },
-    { id: 2, name: 'Friends', contacts: [1,2] }
+    { id: 1, name: 'Humans', contacts: [2] },
+    { id: 2, name: 'Dogs', contacts: [1] }
 ];
