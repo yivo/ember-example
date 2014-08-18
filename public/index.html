@@ -17,8 +17,8 @@
     <script type="text/x-handlebars" data-template-name="_contact-list-controls">
         <h1>{{q}}</h1>
         <div class="contact-list-controls">
-            {{view Ember.TextField valueBinding='controller.q' delay=200 placeholder='Search...'}}
-            {{#link-to 'contacts.new' (query-params q=undefined)}}New{{/link-to}}
+            {{input type='text' valueBinding='controller.q' placeholder='Search...'}}
+            {{#link-to 'contacts.new' (query-params q='')}}New{{/link-to}}
         </div>
     </script>
     <script type="text/x-handlebars" data-template-name="contacts">
@@ -63,7 +63,7 @@
                 <a class="pure-menu-heading" href="#">Company</a>
                 <ul>
                     {{#each groups}}
-                        {{#link-to 'contacts' (query-params group=this.name q=undefined)}}
+                        {{#link-to 'contacts' (query-params group=this.name q='')}}
                             {{this.name}}
                         {{/link-to}}
                     {{/each}}

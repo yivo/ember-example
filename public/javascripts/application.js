@@ -1,5 +1,6 @@
 var App = Ember.Application.create({
-    LOG_TRANSITIONS: true
+    LOG_TRANSITIONS: true,
+    LOG_VIEW_LOOKUPS: true
 });
 
 App.ApplicationStore = DS.Store.extend({
@@ -26,8 +27,12 @@ App.Router.map(function() {
 });
 App.ContactsRoute = Ember.Route.extend({
 
-    model: function(o) {
+    queryParams: {
+        group: { refreshModel: true },
+        q: { refreshModel: true }
+    },
 
+    model: function(o) {
         if (!o.group) {
             return this.store.find('contact');
         }
@@ -41,20 +46,8 @@ App.ContactsRoute = Ember.Route.extend({
         });
 
         return defer.promise;
-    },
-
-    actions: {
-        queryParamsDidChange: (function() {
-            var firstTime = true;
-            return function() {
-                if (firstTime) {
-                    firstTime = false;
-                } else {
-                    Ember.run.debounce(this, this.refresh, 50);
-                }
-            };
-        })()
     }
+
 });
 
 App.IndexRoute = App.ContactsRoute.extend({
@@ -123,7 +116,9 @@ App.ContactFormController = Ember.ObjectController.extend({
 });
 App.ContactsController = Ember.ArrayController.extend({
 
-    queryParams: ['group', 'q']
+    queryParams: ['group', 'q'],
+    group: '',
+    q: ''
 
 });
 App.IndexController = Ember.Controller.extend({
@@ -155,19 +150,3 @@ App.Group.FIXTURES = [
     { id: 1, name: 'Family', contacts: [1] },
     { id: 2, name: 'Friends', contacts: [1,2] }
 ];
-Ember.TextField.reopen({
-
-    _deferredSet: function(key, value, delay) {
-        return Ember.run.debounce(this, Ember.set, this, key, value, delay);
-    },
-
-    _elementValueDidChange: function() {
-        var delay = this.get('delay');
-        if (delay) {
-            return this._deferredSet('value', this.$().val(), delay);
-        } else {
-            return Ember.set(this, 'value', this.$().val());
-        }
-    }
-
-});

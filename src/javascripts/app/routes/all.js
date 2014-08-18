@@ -1,7 +1,11 @@
 App.ContactsRoute = Ember.Route.extend({
 
-    model: function(o) {
+    queryParams: {
+        group: { refreshModel: true },
+        q: { refreshModel: true }
+    },
 
+    model: function(o) {
         if (!o.group) {
             return this.store.find('contact');
         }
@@ -15,20 +19,8 @@ App.ContactsRoute = Ember.Route.extend({
         });
 
         return defer.promise;
-    },
-
-    actions: {
-        queryParamsDidChange: (function() {
-            var firstTime = true;
-            return function() {
-                if (firstTime) {
-                    firstTime = false;
-                } else {
-                    Ember.run.debounce(this, this.refresh, 50);
-                }
-            };
-        })()
     }
+
 });
 
 App.IndexRoute = App.ContactsRoute.extend({

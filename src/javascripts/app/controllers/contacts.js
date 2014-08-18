@@ -1,5 +1,7 @@
 App.ContactsController = Ember.ArrayController.extend({
 
-    queryParams: ['group', 'q']
+    queryParams: ['group', 'q'],
+    group: '',
+    q: ''
 
 });
