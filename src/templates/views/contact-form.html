@@ -1,0 +1,12 @@
+<script type="text/x-handlebars" data-template-name="contact-form">
+    <form>
+        {{input type="text" valueBinding='controller.name'}}
+        <button {{action 'saveContact'}} class='btn-primary'>
+            {{#if model}}
+                Save
+            {{else}}
+                Create
+            {{/if}}
+        </button>
+    </form>
+</script>

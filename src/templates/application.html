@@ -1,6 +1,7 @@
 <script type="text/x-handlebars" data-template-name="application">
     <div id="layout">
-        {{partial 'menu'}}
+        {{render 'menu'}}
         <div id="main">{{outlet}}</div>
     </div>
+    {{outlet modal}}
 </script>

@@ -236,6 +236,11 @@ Hides the menu at `48em`, but modify this based on your app's needs.
         left: 150px;
     }
 }
+#main {
+    position: static;
+    margin: 0;
+    padding: 80px 0 0 0;
+}
 @-webkit-keyframes appear {
     0% {
         margin-top: 80px;
@@ -250,4 +255,78 @@ Hides the menu at `48em`, but modify this based on your app's needs.
     -webkit-animation: appear 200ms ease-in-out;
     -webkit-animation-fill-mode: backwards;
     display: block!important;
+}
+.contact .photo {
+    border-radius: 100px;
+    width: 100px;
+    height: 100px;
+}
+.contact {
+    width: 100px;
+    height: 124px;
+    text-align: center;
+    display: inline-flex;
+    /*position: absolute;*/
+    padding: 15px;
+    -webkit-transition: 200ms ease-in-out;
+    -webkit-transition-property: -webkit-transform;
+    cursor: move;
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+
+}
+.contact .photo:hover {
+    box-shadow: 0 0px 15px -1px;
+    cursor: move;
+}
+.contact .name:hover .photo {
+    box-shadow: 0 0px 15px -1px;
+}
+.pure-menu li.active {
+    background: #444444;
+}
+.pure-menu a:hover {
+    background: none!important;
+}
+.pure-menu li:hover {
+    background: #373c5a;
+}
+.contact-list {
+    position: relative;
+    padding: 0;
+    line-height: normal;
+    margin: 0 auto;
+    max-width: 650px;
+    min-width: 650px;
+    min-height: 650px;
+    -webkit-backface-visibility: hidden;
+}
+.align-center {
+    text-align: center;
+    -webkit-backface-visibility: hidden;
+}
+.contact-list-controls {
+    width: 150px;
+    position: absolute;
+    left: 50%;
+    top: 30px;
+}
+
+.contact-list-controls input[type="text"] {
+    background: url(/images/search-white.png) no-repeat 13px 8px #fff;
+    border: 1px solid #d1d1d1;
+    color: #979393;
+    /*width: 150px;*/
+    width: 200px;
+    padding: 6px 15px 6px 35px;
+    border-radius: 20px;
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset;
+    -webkit-transition: all 0.7s ease 0s;
+    margin-left: -55px;
+}
+
+.contact-list-controls input[type="text"]:focus {
+    /*width: 200px;*/
+    outline: none;
 }

@@ -59,6 +59,7 @@ vendor.root = 'bower_components/';
 
 vendor.js = [
     'jquery/dist/jquery.js',
+    'rsvp/rsvp.js',
     'handlebars/handlebars.js',
     'ember/ember.js',
     'ember-data/ember-data.js'

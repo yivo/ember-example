@@ -1,0 +1,14 @@
+<script type="text/x-handlebars" data-template-name="menu">
+    <div id="menu">
+        <div class="pure-menu pure-menu-open">
+            <a class="pure-menu-heading" href="#">Company</a>
+            <ul>
+                {{#each groups}}
+                    {{#link-to 'contacts' (query-params group=this.name q=undefined)}}
+                        {{this.name}}
+                    {{/link-to}}
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</script>

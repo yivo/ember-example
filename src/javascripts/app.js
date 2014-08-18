@@ -1,7 +1,18 @@
-App = Ember.Application.create({
+var App = Ember.Application.create({
     LOG_TRANSITIONS: true
 });
 
-App.Store = DS.Store.extend({
-    adapter: DS.RESTAdapter.create()
+App.ApplicationStore = DS.Store.extend({
+    adapter: DS.FixtureAdapter.extend({
+        queryFixtures: function(fixtures, query, type) {
+            return fixtures.filter(function(item) {
+                for (var prop in query) {
+                    if (item[prop] !== query[prop]) {
+                        return false;
+                    }
+                }
+                return true;
+            });
+        }
+    })
 });
