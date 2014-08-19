@@ -25,12 +25,18 @@ App.ContactsRoute = Ember.Route.extend({
 
 App.IndexRoute = Ember.Route.extend({
 
+    controllerName: 'contacts',
+
+    queryParams: {
+        q: { refreshModel: true }
+    },
+
     model: function() {
         return this.store.find('contact');
     },
 
     renderTemplate: function(controller, model) {
-        this.controllerFor('contacts').set('content', model);
+        controller.set('content', model);
         this.render('contacts');
     }
 

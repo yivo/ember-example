@@ -1,7 +1,7 @@
 <script type="text/x-handlebars" data-template-name="menu">
     <div id="menu">
         <div class="pure-menu pure-menu-open">
-            {{#link-to 'index' class="pure-menu-heading"}}
+            {{#link-to 'index' (query-params group='' q='') class="pure-menu-heading"}}
                 Home
             {{/link-to}}
             <ul>
