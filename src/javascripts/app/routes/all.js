@@ -1,4 +1,16 @@
-App.ContactsRoute = Ember.Route.extend({
+App.Route = Ember.Route.extend({
+    beforeModel: function(transition) {
+        var p = transition.params;
+        var defaultLocale = this.get('options.default-locale');
+        var locale = p ? p.locale : defaultLocale;
+        this.set('options.locale', locale || defaultLocale);
+
+        console.log(this.get('options'));
+
+    }
+});
+
+App.ContactsRoute = App.Route.extend({
 
     queryParams: {
         group: { refreshModel: true },
@@ -23,7 +35,7 @@ App.ContactsRoute = Ember.Route.extend({
 
 });
 
-App.IndexRoute = Ember.Route.extend({
+App.IndexRoute = App.Route.extend({
 
     controllerName: 'contacts',
 
@@ -42,7 +54,7 @@ App.IndexRoute = Ember.Route.extend({
 
 });
 
-App.ContactsModalForm= Ember.Route.extend({
+App.ContactsModalForm= App.Route.extend({
 
     templateName: 'contacts/new',
 
