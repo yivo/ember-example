@@ -5,7 +5,7 @@ App.Route = Ember.Route.extend({
         var locale = p ? p.locale : defaultLocale;
         this.set('options.locale', locale || defaultLocale);
 
-        console.log(this.get('options'));
+        console.log(this.get('options.locale'));
 
     }
 });

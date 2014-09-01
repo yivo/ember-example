@@ -89,7 +89,7 @@ gulp.task('watch', ['clean'], function() {
 gulp.task('server', function() {
     e('connect').server({
         root: 'public',
-        port: 3000,
+        port: 4000,
         livereload: true
     });
 });
